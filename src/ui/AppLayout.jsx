@@ -9,6 +9,7 @@ function AppLayout() {
 
   return (
     <div className="layout">
+      {/* it will render if somewhere in the app something is loading */}
       {isLoading && <Loader />}
 
       <Header />
