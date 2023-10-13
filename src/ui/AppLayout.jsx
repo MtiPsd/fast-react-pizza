@@ -8,16 +8,18 @@ function AppLayout() {
   const isLoading = navigation.state === "loading";
 
   return (
-    <div className="layout">
+    <div className="grid h-screen grid-rows-[auto_1fr_auto]">
       {/* it will render if somewhere in the app something is loading */}
       {isLoading && <Loader />}
 
       <Header />
 
-      <main>
-        {/* render content of a nested route inside another route */}
-        <Outlet />
-      </main>
+      <div className="overflow-scroll">
+        <main className="mx-auto  max-w-3xl">
+          {/* render content of a nested route inside another route */}
+          <Outlet />
+        </main>
+      </div>
 
       <CartOverview />
     </div>
