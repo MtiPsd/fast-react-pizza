@@ -1,16 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  // cart: [],
-  cart: [
-    {
-      pizzaId: 12,
-      name: "Peperoni",
-      quantity: 2,
-      unitPrice: 16,
-      totalPrice: 32,
-    },
-  ],
+  cart: [],
 };
 
 const cartSlice = createSlice({
@@ -58,3 +49,22 @@ export const {
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+// Perhaps we need this operation in another component
+// so we declare it here then
+// ? You can optimize these function by
+// ? using 'reselect' library
+// ! because these functions may cause performance issues
+// ! in larger applications
+
+export function getCart(state) {
+  return state.cart.cart;
+}
+
+export function getTotalCartQuantity(state) {
+  return state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+export function getTotalCartPrice(state) {
+  return state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
+}
