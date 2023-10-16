@@ -7,6 +7,9 @@ function getPosition() {
   });
 }
 
+// Action creator [thunks]
+// we should not use 'getAddress' name for naming this
+// function because these names are already reserved in redux
 export const fetchAddress = createAsyncThunk("user/fetchAddress", async () => {
   // 1) We get the user's geolocation position
   const positionObj = await getPosition();
@@ -59,7 +62,8 @@ const userSlice = createSlice({
       })
       .addCase(fetchAddress.rejected, (state, action) => {
         state.status = "error";
-        state.error = action.error.message;
+        state.error =
+          "There was a problem getting your address, make sure to fill this field";
       }),
 });
 
