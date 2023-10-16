@@ -68,3 +68,8 @@ export function getTotalCartQuantity(state) {
 export function getTotalCartPrice(state) {
   return state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
 }
+
+export function getCurrentQuantityById(id) {
+  return (state) =>
+    state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
+}
