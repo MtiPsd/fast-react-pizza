@@ -20,7 +20,7 @@ const cartSlice = createSlice({
 
     increaseItemQuantity(state, action) {
       // payload = pizzaId
-      const item = state.cart.find((item) => item.id === action.payload);
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
       item.quantity++;
       // * derived state
       item.totalPrice = item.quantity * item.unitPrice;
@@ -28,10 +28,16 @@ const cartSlice = createSlice({
 
     decreaseItemQuantity(state, action) {
       // payload = pizzaId
-      const item = state.cart.find((item) => item.id === action.payload);
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
       item.quantity--;
       // * derived state
       item.totalPrice = item.quantity * item.unitPrice;
+
+      // delete pizza if user reduce quantity to less than 1
+      if (item.quantity === 0) {
+        // * nice trick
+        cartSlice.caseReducers.deleteItem(state, action);
+      }
     },
 
     clearCart(state, action) {
