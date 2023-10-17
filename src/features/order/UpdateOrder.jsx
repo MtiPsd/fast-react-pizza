@@ -19,3 +19,5 @@ export async function action({ request, params }) {
   await updateOrder(params.orderId, data);
   return null;
 }
+
+// test the application
